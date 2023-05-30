@@ -1,0 +1,21 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ "main", "rel-*" ]
+
+env:
+  NAME: World
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-20.04
+
+    timeout-minutes: 5
+
+    steps:
+
+      - name: Greet user
+        run: echo "Hello $NAME"

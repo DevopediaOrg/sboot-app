@@ -15,15 +15,29 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HelloControllerTest {
+class StaticPagesControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void getHello() throws Exception {
+	void homepage() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().string(equalTo("Greetings from Spring Boot!")));
+	}
+
+	@Test
+	void aboutUs() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/about-us").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().string(equalTo("About Us page!")));
+	}
+
+	@Test
+	void contactUs() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/contact-us").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().string(equalTo("Contact form is shown here!")));
 	}
 }
